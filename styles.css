@@ -59,4 +59,6 @@ div.leaderboard .score-div {
 
 div.leaderboard .score-div:hover {
     transform: scale(1.1);
+    color: darkorange;
+    text-shadow: 0px 0px 10px yellow;
 }
