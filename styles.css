@@ -1,3 +1,13 @@
+@font-face {
+    font-family: roboto;
+    src: url(/fonts/roboto.ttf);
+}
+
+@keyframes wiggle {
+    0% {transform: rotateX(10deg);}
+    100% {transform: rotateX(-20deg);}
+}
+
 body {
     background-color: black;
 }
@@ -7,31 +17,46 @@ h1 {
     color: white;
 }
 
+div.search-div {
+    text-align: center;
+    margin: auto;
+    width: 50%; 
+    color: red;
+}
+
 div.leaderboard {
     color: white;
     text-align: center;
-
 }
 
-div.leaderboard .score.first-place span {
+div.leaderboard .score-div.first-place span {
     color: green;
     font-size: 40px;
+    animation: wiggle 4s ease-in-out 0 infinite;
 }
-div.leaderboard .score.second-place span {
+div.leaderboard .score-div.second-place span {
     color: yellow;
     font-size: 32px;
 }
-div.leaderboard .score.third-place span{
+div.leaderboard .score-div.third-place span{
     color: brown;
     font-size: 28px;
 }
 
-
 div.leaderboard span {
-    transition: all 0.3s ease-in-out;
     font-size: 20px;
+
 }
 
-span:hover {
+div.leaderboard .score-div {
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+    font-family: roboto
+}
+
+div.leaderboard .score-div:hover {
     transform: scale(1.1);
 }

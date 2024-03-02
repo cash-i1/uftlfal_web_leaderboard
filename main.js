@@ -42,7 +42,7 @@ function populate_leaderboard() {
             for (person of scores) {
                 var temp = null        
                 var temp = document.createElement("div");
-                temp.classList.add("score")
+                temp.classList.add("score-div")
 
                 console.log(person.score, place)
                 var place_span = document.createElement("span") 
@@ -55,7 +55,7 @@ function populate_leaderboard() {
 
                 var score_span = document.createElement("span") 
                 score_span.classList.add("score")
-                
+
                 var formatted_score = new Date(parseInt(person.score));
                 var minutes = formatted_score.getUTCMinutes().toString().padStart(2, '0');
                 var seconds = formatted_score.getUTCSeconds().toString().padStart(2, '0');
@@ -83,14 +83,72 @@ function populate_leaderboard() {
                 temp.appendChild(place_span)
                 temp.appendChild(name_span)
                 temp.appendChild(score_span)
+                
 
                 leaderboard_div.appendChild(temp);
+                leaderboard_div.appendChild(document.createElement("br"))
 
             }
         })
     
 }
+
+function search() {
+    var input = document.querySelector(".search-box")
+    var leaderboard = document.querySelector(".leaderboard")
+
+    if (input.value) {
+        for (div of leaderboard.childNodes) {
+            if (div.nodeName.toLowerCase() !== "div") {
+                console.log("nod is not a div")
+                continue;
+            } else {
+                console.log("is a div")
+            }
+            var name = div.querySelector(".name").textContent.trim()
+            console.log(`checking if ${name} is in ${input.value}`)
+
+            input_val = input.value
+
+            if (name.length >= input_val.length)
+                if (!name.includes(input_val)) {
+                    div.style.opacity = "0.5"
+                    div.style.transform = "scale(1.0)"
+                    console.log(`${name} is in ${input.value}`)
+                } else {
+                    div.style.display = "1"
+                    div.style.transform = "scale(1.2)"
+                }
+            else {
+                if (!input_val.includes(name)) {
+                    div.style.opacity = "0.5"
+                    div.style.transform = "scale(1.0)"
+                    console.log(`${name} is in ${input.value}`)
+                } else {
+
+                    div.style.transform = "scale(1.2)"
+
+                    div.style.display = "1"
+                }
+            }
+            
+        }
+    }
+    else {
+        for (div of leaderboard.childNodes) {
+            if (div.nodeName.toLowerCase() === "div") {
+
+                div.style.transform = "scale(1.0)"
+                    
+                div.style.opacity = "1"
+            }
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     populate_leaderboard();
 });
+
+
 
