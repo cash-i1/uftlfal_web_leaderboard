@@ -17,6 +17,18 @@ function print_scores() {
 }
 
 
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+} //thank you https://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss#6313008
+
 
 function populate_leaderboard() {
     var leaderboard_div =  document.querySelector(".leaderboard");
@@ -43,7 +55,16 @@ function populate_leaderboard() {
 
                 var score_span = document.createElement("span") 
                 score_span.classList.add("score")
-                score_span.textContent = `: ${person.score}`;
+                
+                var formatted_score = new Date(parseInt(person.score));
+                var minutes = formatted_score.getUTCMinutes().toString().padStart(2, '0');
+                var seconds = formatted_score.getUTCSeconds().toString().padStart(2, '0');
+                var milliseconds = formatted_score.getUTCMilliseconds().toString().padStart(3, '0');
+
+                var formatted_score_string = `${minutes}:${seconds}:${milliseconds}`;
+
+
+                score_span.textContent = `: ${formatted_score_string}`;
 
                 if (place == 1) {
                     temp.classList.add("first-place")
