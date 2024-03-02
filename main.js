@@ -17,6 +17,7 @@ function print_scores() {
 }
 
 
+
 function populate_leaderboard() {
     var leaderboard_div =  document.querySelector(".leaderboard");
     
@@ -30,11 +31,11 @@ function populate_leaderboard() {
                 var temp = null        
                 var temp = document.createElement("div");
                 temp.classList.add("score")
-                
+
                 console.log(person.score, place)
                 var place_span = document.createElement("span") 
                 place_span.classList.add("place")
-                place_span.textContent = place.toString();
+                place_span.textContent = `${place}. `;
                 
                 var name_span = document.createElement("span") 
                 name_span.classList.add("name")
@@ -42,7 +43,7 @@ function populate_leaderboard() {
 
                 var score_span = document.createElement("span") 
                 score_span.classList.add("score")
-                score_span.textContent = person.score.toString();
+                score_span.textContent = `: ${person.score}`;
 
                 if (place == 1) {
                     temp.classList.add("first-place")

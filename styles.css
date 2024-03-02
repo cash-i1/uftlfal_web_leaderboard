@@ -13,7 +13,25 @@ div.leaderboard {
 
 }
 
-div.leaderboard .score.first-place {
+div.leaderboard .score.first-place span {
     color: green;
-    font-size: 30px;
+    font-size: 40px;
+}
+div.leaderboard .score.second-place span {
+    color: yellow;
+    font-size: 32px;
+}
+div.leaderboard .score.third-place span{
+    color: brown;
+    font-size: 28px;
+}
+
+
+div.leaderboard span {
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+}
+
+span:hover {
+    transform: scale(1.1);
 }
