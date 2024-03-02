@@ -1,0 +1,19 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+div.leaderboard {
+    color: white;
+    text-align: center;
+
+}
+
+div.leaderboard .score.first-place {
+    color: green;
+    font-size: 30px;
+}
